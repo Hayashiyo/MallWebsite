@@ -8,9 +8,21 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
+<style>
+    h1 {
+        color: darkgoldenrod;
+    }
+
+    body {
+        background-image: url(https://picsum.photos/id/256/1280/1024);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+</style>
 
 <body>
-    <h1 class="container mt-3 text-center">XXX MALL</h1>
+    <h1 class="container mt-5 text-center">XXX MALL</h1>
     <br>
     <div class="container mt-3">
 
@@ -29,8 +41,8 @@
                         <span style="font-size: xx-large;">1</span>
                         <img src="https://picsum.photos/id/63/100/100" alt="">
                     </td>
-                    <td><input type="number" name="" id="pri1" value="100" min="0"></td>
-                    <td><input type="number" name="" id="amo1" value="0" min="0"></td>
+                    <td><input type="number" name="" id="pri1" value="150" min="0" readonly></td>
+                    <td><input type="number" name="" id="amo1" value="0" min="0" onchange="calpc"></td>
                     <td id="pc1">0 </td>
                 </tr>
                 <tr>
@@ -38,8 +50,8 @@
                         <span style="font-size: xx-large;">2</span>
                         <img src="https://picsum.photos/id/145/100/100" alt="">
                     </td>
-                    <td><input type="number" name="" id="pri2" value="200" min="0"></td>
-                    <td><input type="number" name="" id="amo2" value="0" min="0"></td>
+                    <td><input type="number" name="" id="pri2" value="200" min="0" readonly></td>
+                    <td><input type="number" name="" id="amo2" value="0" min="0" onchange="calpc"></td>
                     <td id="pc2">0 </td>
                 </tr>
                 <tr>
@@ -47,8 +59,8 @@
                         <span style="font-size: xx-large;">3</span>
                         <img src="https://picsum.photos/id/111/100/100" alt="">
                     </td>
-                    <td><input type="number" name="" id="pri3" value="300" min="0"></td>
-                    <td><input type="number" name="" id="amo3" value="0" min="0"></td>
+                    <td><input type="number" name="" id="pri3" value="300" min="0" readonly></td>
+                    <td><input type="number" name="" id="amo3" value="0" min="0" onchange="calpc"></td>
                     <td id="pc3">0 </td>
                 </tr>
                 <tr>
@@ -56,73 +68,90 @@
                         <span style="font-size: xx-large;">4</span>
                         <img src="https://picsum.photos/id/11/100/100" alt="">
                     </td>
-                    <td><input type="number" name="" id="pri4" value="400" min="0"></td>
-                    <td><input type="number" name="" id="amo4" value="0" min="0"></td>
+                    <td><input type="number" name="" id="pri4" value="450" min="0" readonly></td>
+                    <td><input type="number" name="" id="amo4" value="0" min="0" onchange="calpc"></td>
                     <td id="pc4">0 </td>
+                </tr>
+                <tr>
+                    <td>
+
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <p id="showAll">0</p>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <br>
 
-    <div class="container mt-3">
+    <!-- <div class="container mt-3">
         <div class="d-flex flex-row-reverse">
             <p id="showAll">0</p>
-        </div>
-    </div>
+        </div> -->
+    <!-- </div> -->
     <div class="container mt-3">
         <div class="d-flex flex-row-reverse">
             <button class="btn btn-info" onclick="calpc()">計算總價</button>
         </div>
     </div>
-    <br>
+    <div class="container mt-3 text-center">
+        <p id="discount1" style="color:red ; font-size: x-large; font-weight: bolder;">確認購買另有優惠</p>
+    </div>
     <div class="d-grid">
         <button type="button" class="btn btn-danger btn-block" onclick="discount()">確認購買</button>
     </div>
-    <div class="container mt-3 text-center">
-            <p id="discount1"></p>
-            </div>
-        
-
-<script>
-const Pri1 = document.getElementById('pri1');
-const Pri2 = document.getElementById('pri2');
-const Pri3 = document.getElementById('pri3');
-const Pri4 = document.getElementById('pri4');
-const Amo1 = document.getElementById('amo1');
-const Amo2 = document.getElementById('amo2');
-const Amo3 = document.getElementById('amo3');
-const Amo4 = document.getElementById('amo4');
-const Pc1 = document.getElementById('pc1');
-const Pc2 = document.getElementById('pc2');
-const Pc3 = document.getElementById('pc3');
-const Pc4 = document.getElementById('pc4');
-const ShowAll = document.getElementById('showAll');
-const Discount1 = document.getElementById('discount1');
-console.log(Pri1);
-console.log(Amo1);
-function calpc(){
-P1 =`${parseInt(Pri1.value) * parseInt(Amo1.value)}`;
-P2 =`${parseInt(Pri2.value) * parseInt(Amo2.value)}`;
-P3 =`${parseInt(Pri3.value) * parseInt(Amo3.value)}`;
-P4 =`${parseInt(Pri4.value) * parseInt(Amo4.value)}`;
-Pall = `${parseInt(P1)+parseInt(P2)+parseInt(P3)+parseInt(P4)}`;
-Pc1.innerText = P1
-Pc2.innerText = P2
-Pc3.innerText = P3
-Pc4.innerText = P4
-ShowAll.innerText = Pall
-}
-function discount(){
-    if(Pall>600){
-        dc=`${P1}+${P2}+${P3}+${P4}=${Pall}---八折優惠${Pall*0.8}---`;
-    }else{dc=`${P1}+${P2}+${P3}+${P4}=${Pall}`;}
-    Discount1.innerText = dc ;
-}
 
 
+    <script>
+        const Pri1 = document.getElementById('pri1');
+        const Pri2 = document.getElementById('pri2');
+        const Pri3 = document.getElementById('pri3');
+        const Pri4 = document.getElementById('pri4');
+        const Amo1 = document.getElementById('amo1');
+        const Amo2 = document.getElementById('amo2');
+        const Amo3 = document.getElementById('amo3');
+        const Amo4 = document.getElementById('amo4');
+        const Pc1 = document.getElementById('pc1');
+        const Pc2 = document.getElementById('pc2');
+        const Pc3 = document.getElementById('pc3');
+        const Pc4 = document.getElementById('pc4');
+        const ShowAll = document.getElementById('showAll');
+        const Discount1 = document.getElementById('discount1');
+        console.log(Pri1);
+        console.log(Amo1);
+        function calpc() {
+            if (Amo1.value >= 0 && Amo2.value >= 0 && Amo3.value >= 0 && Amo4.value >= 0) {
+                P1 = `${parseInt(Pri1.value) * parseInt(Amo1.value)}`;
+                P2 = `${parseInt(Pri2.value) * parseInt(Amo2.value)}`;
+                P3 = `${parseInt(Pri3.value) * parseInt(Amo3.value)}`;
+                P4 = `${parseInt(Pri4.value) * parseInt(Amo4.value)}`;
+                Pall = `${parseInt(P1) + parseInt(P2) + parseInt(P3) + parseInt(P4)}`;
+                Pc1.innerText = P1
+                Pc2.innerText = P2
+                Pc3.innerText = P3
+                Pc4.innerText = P4
+                ShowAll.innerText = Pall
+            } else {
+                alert('數量不能為負數')
+            }
+        }
+        function discount() {
+            
+            if (Pall == undefined ) {
+                 dc = `請選取您要的商品數量` }
+            else if (Pall > 600) {
+                // ${P1}+${P2}+${P3}+${P4}=${Pall}
+                dc = `---八折優惠${Pall * 0.8}---`;
+            } else if (Pall > 0) { dc = `${Pall}`; } else { dc = `請選取您要的商品數量` }
+            Discount1.innerHTML = dc;
+        }
+        console.log(Pall)
 
-</script>
+
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
